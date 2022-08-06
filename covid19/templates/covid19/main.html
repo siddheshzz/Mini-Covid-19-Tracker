@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>SARCOV -Tracker</title>
+    {% comment %} <!-- Step 1 - Include the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Step 2 - Include the fusion theme -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> {% endcomment %}
+
+
+
+
+
+
+
+<script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+
+  <nav class="row" style="background: skyblue; color: black;">
+    <h1 class="col-md-3 text-center">Weather-App</h1>
+  </nav>
+  {% comment %} <canvas id="myChart"></canvas> {% endcomment %}
+  {% comment %} <div id="chart-container"></div> {% endcomment %}
+  <div id="heatchart"></div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h3>Place : {{Globe}}</h1>
+        <h5>New Confirmed : {{newconfirmed}}</h5>
+        <h5>Total Confirmed : {{totalconfirmed}}</h5>
+        <h5>New Deaths : {{Newdeaths}} </h5>
+        <h5>Total Deaths : {{Totaldeaths}}</h5>
+        <h5>New Recovered : {{Newrecovered}}</h5>
+        <h5>Total Recovered : {{Totalrecovered}}</h5>
+    </div>
+  </div>
+</body>
+<script>
+{% comment %} var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+}); {% endcomment %}
+{% comment %} 
+const dataSource = {
+  chart: {
+    theme: "fusion",
+    caption: "Covid 19 Cases",
+    showlabels: "0",
+    nullentitycolor: "#4FCAF6",
+    legendcaption: "Number of cases",
+    entitytooltext: "$lname {br} Homes with TV: $datavalue "
+  },
+  colorrange: {
+    gradient: "0",
+    color: [
+      {
+        minvalue: "0",
+        maxvalue: "50000",
+        displayvalue: "0 - 50000",
+        code: "#F0F1F9"
+      },
+      {
+        minvalue: "50000",
+        maxvalue: "100000",
+        displayvalue: "50000 - 100000",
+        code: "#D6DBEF"
+      },
+      {
+        minvalue: "100000",
+        maxvalue: "500000",
+        displayvalue: "100000 - 500000",
+        code: "#B8C3E4"
+      },
+      {
+        minvalue: "500000",
+        maxvalue: "1000000",
+        displayvalue: "500000 - 1000000",
+        code: "#9DA6D4"
+      },
+      {
+        minvalue: "1000000",
+        maxvalue: "2000000",
+        displayvalue: "1000000 - 2000000",
+        code: "#8390C8"
+      },
+      {
+        minvalue: "2000000",
+        maxvalue: "9000000",
+        displayvalue: "> 2000000",
+        code: "#7570B3"
+      }
+    ]
+  },
+  data: {{d|safe}}
+};
+
+FusionCharts.ready(function() {
+  var myChart = new FusionCharts({
+    type: "maps/worldwithcountries",
+    renderAt: "chart-container",
+    width: "100%",
+    height: "100%",
+    dataFormat: "json",
+    dataSource
+  }).render();
+});
+
+</script> {% endcomment %}
+<script>
+
+var someDataMap=[{'code3': 'AFG', 'name': 'Afghanistan', 'value': 484, 'code': 'AF'},
+ {'code3': 'ALB', 'name': 'Albania', 'value': 409, 'code': 'AL'},
+ {'code3': 'DZA', 'name': 'Algeria', 'value': 1666, 'code': 'DZ'},
+ {'code3': 'AND', 'name': 'Andorra', 'value': 583, 'code': 'AD'},
+ {'code3': 'AGO', 'name': 'Angola', 'value': 19, 'code': 'AO'}];
+
+ var someData2=[{
+		"code3": "ABW",
+		"name": "Aruba",
+		"value": 582.34,
+		"code": "AW"
+	},
+	{
+		"code3": "AFG",
+		"name": "Afghanistan",
+		"value": 53.08,
+		"code": "AF"
+	},
+	{
+		"code3": "AGO",
+		"name": "Angola",
+		"value": 23.11,
+		"code": "AO"
+    }];
+ var someData3={{dataForMapGraph|safe}};
+    Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
+
+// Prevent logarithmic errors in color calulcation
+data.forEach(function (p) {
+    p.value = (p.value < 1 ? 1 : p.value);
+});
+
+// Initiate the chart
+Highcharts.mapChart('mapChart', {
+
+    chart: {
+        map: 'custom/world'
+    },
+
+    title: {
+        text: 'World Map COVID-19 Infection '
+    },
+
+    legend: {
+        title: {
+            text: 'Infected Population',
+            style: {
+                color: ( // theme
+                    Highcharts.defaultOptions &&
+                    Highcharts.defaultOptions.legend &&
+                    Highcharts.defaultOptions.legend.title &&
+                    Highcharts.defaultOptions.legend.title.style &&
+                    Highcharts.defaultOptions.legend.title.style.color
+                ) || 'black'
+            }
+        }
+    },
+
+    mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+            verticalAlign: 'bottom'
+        }
+    },
+
+    tooltip: {
+        backgroundColor: 'none',
+        borderWidth: 0,
+        shadow: false,
+        useHTML: true,
+        padding: 0,
+        pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
+            '</span></span> {point.name}<br>' +'<span><h4>{point.value}</h4></span>',
+        positioner: function () {
+            return { x: 0, y: 250 };
+        }
+    },
+
+    colorAxis: {
+        min: 1,
+        max: {{maxVal|safe}},
+        type: 'logarithmic'
+    },
+
+    series: [{
+        data: {{d|safe}},
+        joinBy: ['iso-a3', 'code3'],
+        name: 'Infected Counts',
+        states: {
+            hover: {
+                color: '#a4edba'
+            }
+        }
+    }]
+});
+});
+
+</script>
+
+<script>
+var options = {
+          series: {{dataForheatMap|safe}},
+          chart: {
+          height: 6500,
+          type: 'heatmap',
+        },
+        dataLabels: {
+          enabled: true
+        },
+        dataLabels: {
+            position: 'top'
+            },
+        colors: ["#008FFB"],
+        yaxis: {
+      show: false},
+      xaxis: {
+          type: 'category',
+          categories: {{dateCat|safe}}
+        },
+        
+        };
+var chart4 = new ApexCharts(document.querySelector("#heatchart"), options);
+
+chart4.render();
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+<head>
+
+  <meta charset="utf-8">
+  <title>SARCOV -Trasascker</title>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Custom fonts for this template-->
+  <link href= {% static 'vendor/fontawesome-free/css/all.min.css' %} rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' rel="stylesheet">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- Custom styles for this template-->
+  <link href={% static 'css/sb-admin-2.min.css' %} rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  
+  <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon ">
+          <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">COVID-TRACKER <sup>I</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+        
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        STAY SAFE
+      </div>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Analytics
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Country</span>
+        </a>
+
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="map">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="map">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tables</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+
+
+    </ul>
+     <div class="container-fluid">
+            <br>
+            <br>
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">GLOBAL-TALLY</h1>
+          </div>
+  <br>
+  <br>
+
+    <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Confirmed</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalconfirmed }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-ambulance fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Active</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalactive }}</div>
+                    </div>
+                    <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ perA }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                    <div class="col-auto">
+                      <i class="fas fa-bed fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Recovered</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ Totalrecovered }}</div>
+                    </div>
+                    <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ perR }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                    <div class="col-auto">
+                      <i class="fas fa-heart fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Deaths</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ Totaldeaths }}</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ perD }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-skull-crossbones fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <dic class="row">
+          <div id="regions_div" style="width: 600px; height: 400px; padding-top: 20px; padding-right: 30px;  padding-bottom: 50px;  padding-left: 80px;"></div>
+          
+          <div id="chart1" ></div>
+          
+          </div>
+
+
+</div>
+</body>
+<style>
+
+body {
+  background: #1B213B;
+  color: #777;
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+.body-bg {
+  background: #F3F4FA !important;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 600;
+}
+
+.box .apexcharts-xaxistooltip {
+  background: #1B213B;
+  color: #fff;
+}
+
+.content-area {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.box {
+  background-color: #262D47;
+  padding: 25px 25px; 
+  border-radius: 4px; 
+}
+
+.columnbox {
+  padding-right: 15px;
+}
+.radialbox {
+  max-height: 333px;
+  margin-bottom: 60px;
+}
+
+.apexcharts-legend-series tspan:nth-child(3) {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.edit-on-codepen {
+  text-align: right;
+  width: 100%;
+  padding: 0 20px 40px;
+  position: relative;
+  top: -30px;
+  cursor: pointer;
+}
+#chart1 {
+  width: 300px;
+  margin: 0 auto;
+  font:#ffff;
+  padding-right:0px;
+  padding-left:160PX;
+  padding-top:120PX;
+}
+</style>
+{% comment %}  {% endcomment %}
+
+<script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable({{d|safe}});
+
+        var options = {
+          backgroundColor: '#1B213B',
+        
+
+          width: 900,
+          height: 400,
+          colors: [ '#ed899d', '#ea728a', '#e65a76', '#e34262', '#df2b4f', '#dc143c'],          
+          };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script>
+    var options1 = {
+      colors:['#12db46', '#2e1094', '#f4511e'],
+    chart: {
+      height: 220,
+      width:200,
+      foreColor: '#373d3f',
+      
+      type: "radialBar",
+       },
+    series: [{{ perR|safe }},{{ perA|safe }},{{ perD|safe}},{{ e|safe }}],
+    plotOptions: {
+      radialBar: {
+        dataLabels: {
+         total: {
+           show: false,
+           label: 'TOTAL'
+            }
+          }
+        }
+     },
+     labels: ['Recovered', 'Total Active','Deaths']
+    };
+
+new ApexCharts(document.querySelector("#chart1"), options1).render();
+
+    </script>
+
+</html>
